@@ -1,0 +1,49 @@
+{
+  "name": "grup!",
+  "description": "grup",
+  "version": "1.0.0",
+  "repository": "",
+  "private": false,
+  "author": "Evan Kysley",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "6.9.5"
+  },
+  "dependencies": {
+    "async": "latest",
+    "body-parser": "*",
+    "compression": "*",
+    "connect": "*",
+    "connect-flash": "latest",
+    "connect-mongo": "latest",
+    "connect-multiparty": "*",
+    "cookie-parser": "*",
+    "dotenv": "^4.0.0",
+    "express": "~4.0.0",
+    "express-session": "*",
+    "forever": "latest",
+    "gzippo": "latest",
+    "method-override": "*",
+    "mongodb": "^2.2.24",
+    "mongoose": "latest",
+    "morgan": "*",
+    "notifier": "latest",
+    "passport": "^0.3.2",
+    "passport-facebook": "latest",
+    "passport-github": "latest",
+    "passport-github2": "^0.1.9",
+    "passport-google-oauth": "latest",
+    "passport-local": "latest",
+    "passport-twitter": "~1.0.2",
+    "pug": "latest",
+    "serve-favicon": "*",
+    "underscore": "latest",
+    "view-helpers": "latest"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "node-sass-middleware": "^0.11.0"
+  }
+}

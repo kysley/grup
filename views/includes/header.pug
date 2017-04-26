@@ -1,0 +1,18 @@
+body
+  .grid
+    .row
+      .col.col-1-of-4
+        p.user-welcome welcome back
+      .col.col-3-of-4
+        ul.nav
+          if (req.isAuthenticated())
+            block newpost
+            |
+            li
+              a(href="/users/"+req.user.id, title="Profile") Profile
+            |
+            li
+              a(href="/analytics/", title="analytics") Analytics
+            |
+            li
+              a(href="/logout", title="logout") Logout

@@ -1,0 +1,50 @@
+extends ../layouts/default
+
+block main
+  h1= title
+
+
+block content
+  - var action = '/posts'
+  - action += post.isNew? '' : '/' + post.id
+
+
+  .row
+    .col-md-12
+      a.btn.btn-primary.btn-lg(data-toggle='modal', href='#myModal') Edito
+      button.close(type='button', data-dismiss='modal', aria-hidden='true') ×o
+      h4.modal-title Edit post
+      i.icon-twitter.icon-2x
+    .modal-body
+      .tweet-body
+          - var action = '/posts'
+          if (!post.isNew)
+            - action += '/'+post.id
+
+          if (typeof errors !== 'undefined')
+            .fade.in.alert.alert-block.alert-error
+              a.close(data-dismiss="alert", href="javascript:void(0)") x
+              ul
+                each errors in errors
+                  li = error.type
+
+
+
+          form(method="post", action=action, enctype="multipart/form-data")
+            if (!post.isNew)
+              input(type="hidden", name="_method", value="PUT")
+
+            .control-group
+              label.control-label(for='post')
+              br
+              .controls
+                textarea(type='text', class="form-control", name="title",
+                  placeholder='title',maxlength='140')=post.title
+
+                textarea(type='text', class="form-control", name="body",
+                  placeholder='body',maxlength='140')=post.body
+            br
+            .form-actions
+              button.btn.btn-primary(type='submit') Publish post
+
+              a.btn(href='/posts', title="cancel") Cancel

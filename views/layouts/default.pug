@@ -1,0 +1,11 @@
+doctype html
+html(lang='en')
+  include ../includes/head
+  if (req.isAuthenticated())
+  body.login-screen
+    include ../includes/header
+    .container
+      block main
+      block content
+    //- include ../includes/footer
+    //- include ../includes/foot
