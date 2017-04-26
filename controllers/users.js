@@ -59,6 +59,15 @@ exports.create = (req, res, next) => {
   console.log(req.body);
   const user = new User(req.body);
   user.provider = 'local';
+
+  User.findOne({ username: req.body.username}, (err, existingUser) => {
+    if (err) {
+      return next(err);
+    }
+    if (existingUser) {
+      req.flash('errors', {msg: 'Account with that username already exists.'});
+      return res.redirect('/signup');
+    }
   user.save(err => {
     if (err) {
       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
@@ -71,6 +80,7 @@ exports.create = (req, res, next) => {
       return res.redirect('/');
     });
   });
+  })
 };
 
 exports.user = (req, res, next, id) => {
