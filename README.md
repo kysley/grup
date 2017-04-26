@@ -8,3 +8,9 @@ The UI is pretty much non-existant at this stage while I polish the functionalit
 
 You could learn from this (probably, if you wanted) as I believe the code is pretty lean.
 
+# TODO
+1. Comment on posts
+2. Edit posts
+    * and comments
+3. user page
+4. ..more coming
