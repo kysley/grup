@@ -11,18 +11,12 @@ module.exports = (app, passport, auth) => {
   // app.get('/userslist', users.list);
   app.post('/users/sessions', passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid email or password'}), users.session);
   app.get('/users/:userId', users.show);
-  // app.get('/users/:userId/followers', users.showFollowers);
-  // app.get('/users/:userId/following', users.showFollowing);
 
   app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/login'}), users.create);
   // app.get('/auth/local/callback', passport.authenticate('local', { failureRedirect: '/login' }), users.authCallback);
 
-  // app.get('/auth/facebook', passport.authenticate('facebook',{scope: ['email', 'user_about_me'], failureRedirect: '/login' }), users.signin);
-  // app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), users.authCallback);
   app.get('/auth/github', passport.authenticate('github', { failureRedirect: '/login' }), users.signin);
   app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), users.authCallback);
-  // app.get('/auth/twitter', passport.authenticate('twitter', { failureRedirect: '/login' }), users.signin);
-  // app.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/login' }));
 
   /**
    * API related code
@@ -60,20 +54,4 @@ module.exports = (app, passport, auth) => {
   app.get('/posts/:id/comments', auth.requiresLogin, comments.create);
   // app.del('/posts/:id/comments', auth.requiresLogin, comments.destroy);
 
-  /**
-   * Favorite routes
-   */
-   // const favorites = require('../controllers/favorites');
-
-   // app.post('/tweets/:id/favorites', auth.requiresLogin, favorites.create);
-   // app.del('/tweets/:id/favorites', auth.requiresLogin, favorites.destroy);
-   // app.post('/users/tweets/:id/favorites', auth.requiresLogin, favorites.create);
-   // app.del('/users/tweets/:id/favorites', auth.requiresLogin, favorites.destroy);
-
-   // /**
-   //  * Follow
-   //  */
-   // const follows = require('../controllers/follows');
-
-   // app.post('/users/:userId/follow', auth.requiresLogin, follows.follow);
 };
