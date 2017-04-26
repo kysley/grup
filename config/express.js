@@ -4,10 +4,10 @@
 
 var express        = require('express');
 var session        = require('express-session');
+var flash          = require('express-flash');
 var compress       = require('compression');
 var favicon        = require('serve-favicon');
 var mongoStore     = require('connect-mongo')(session);
-var flash          = require('connect-flash');
 var helpers        = require('view-helpers');
 var morgan         = require('morgan');
 var cookieParser   = require('cookie-parser');
@@ -54,7 +54,7 @@ module.exports = (app, config, passport) => {
     }
   }));
   app.use(session({
-    secret: 'noobjs',
+    secret: process.env.SECRET,
     store: new mongoStore({
       url: config.db,
       collection: 'sessions'
@@ -63,11 +63,10 @@ module.exports = (app, config, passport) => {
     saveUninitialized: true
   }));
 
-  app.use(flash());
   // app.use("/img", assets); // makes the image assets accessible via relative URL
   app.use(passport.initialize());
-  app.use(passport.session({secret: 'noobjs', resave: true, saveUninitialized: true}));
-
+  app.use(passport.session({secret: process.env.SECRET, resave: true, saveUninitialized: true}));
+  app.use(flash());
   app.use((err, req, res, next) => {
     if (err.message.indexOf('not found') !== -1) {
       return next();
