@@ -68,7 +68,6 @@ exports.new = (req, res) => {
 // ### Create a Tweet
 exports.create = (req, res) => {
   logAnalytics(req);
-  console.log(req);
   var post = new Post(req.body);
   post.user = req.user;
   post.uploadAndSave(req.files.image, err => {
