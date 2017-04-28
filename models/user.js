@@ -26,21 +26,21 @@ UserSchema
 var validatePresenceOf = value => value && value.length;
 
 UserSchema.path('username').validate(function(username) {
-  if (authTypes.indexOf(this.provider) !== -1) {
+  if (this.skipValidation()) {
     return true
   }
   return username.length
-}, 'username cannot be blank');
+}, 'Username cannot be blank');
 
 UserSchema.path('hashedPassword').validate(function(hashedPassword) {
-  if (authTypes.indexOf(this.provider) !== -1) {
-    return true
-  }
-  return hashedPassword.length
-}, 'hashedPassword cannot be blank');
+  if (this.skipValidation()) return true;
+  return hashedPassword.length && this._password.length;
+}, 'Password cannot be blank');
 
 UserSchema.pre('save', function(next) {
-  if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1) {
+  if (!this.isNew) return next();
+
+  if (!validatePresenceOf(this.password) && !this.skipValidation()) {
     next(new Error('Invalid password'));
   } else {
     next();
@@ -61,6 +61,10 @@ UserSchema.methods = {
       return '';
     }
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+  },
+
+  skipValidation: function () {
+    return ~authTypes.indexOf(this.provider);
   }
 };
 

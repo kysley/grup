@@ -69,8 +69,9 @@ exports.create = (req, res, next) => {
       return res.redirect('/signup');
     }
   user.save(err => {
+    console.log(err);
     if (err) {
-      if (err) req.flash('info', 'Sorry! We are not able to log you in!');
+      if (err) req.flash('info', {msg: 'Sorry! We are not able to log you in!'});
       return res.render('users/signup', {errors: err.errors, user: user});
     }
     req.logIn(user, err => {
@@ -82,6 +83,27 @@ exports.create = (req, res, next) => {
   });
   })
 };
+
+// exports.create = (req, res) => {
+//   const user = new User(req.body);
+//   user.provider = 'local';
+//   try {
+//     user.save();
+//     req.logIn(user, err => {
+//       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
+//       return res.redirect('/');
+//     });
+//   } catch (err) {
+//     const errors = Object.keys(err.errors)
+//       .map(field => err.errors[field].message);
+
+//     res.render('users/signup', {
+//       title: 'Sign up',
+//       errors,
+//       user
+//     });
+//   }
+// };
 
 exports.user = (req, res, next, id) => {
   logAnalytics(req);
@@ -110,7 +132,7 @@ exports.show = (req, res) => {
       return res.render('500');
     }
     res.render('users/show', {
-      title: 'Posts from ' + user.name,
+      title: 'Posts from ' + user.username,
       user: user,
       posts: posts,
     });
