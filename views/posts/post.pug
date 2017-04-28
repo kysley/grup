@@ -1,4 +1,4 @@
-post.post
+div.col.col-2-of-4
   h3
     a(href='/posts/'+post._id, title=post.title) #{post.title}
   p= post.body
@@ -6,10 +6,8 @@ post.post
   .meta
     span.muted= formatDate(post.createdAt)
 
-    if (post.username)
-      |
-      span Author
+    - if (post.user)
 
-      - var name = post.username ? post.username : post.username
+      - var name = post.user.username
 
       a(href="/users/"+post.user._id)= name

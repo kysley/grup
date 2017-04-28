@@ -5,30 +5,13 @@ block newpost
     a.btn.btn-primary.flat.new-post(href='/posts/new')
       i(class="icon-pencil")  Create new post
 
-block main
-  h1= list
-
 block content
-  - if (posts.length)
-    each post in posts
-      include post
-      //- .well.flat
-      //-   .tweet
-      //-     .row
-      //-       .col.col-1-of-8
-      //-         //- if (tweet.user.name)
-      //-         //-   a(href="/users/"+tweet.user._id)=tweet.user.name
-      //-         //- a(href="/users/"+post.user._id)= name
-      //-         a(href="/users/"+post.user._id)= post.user.username
-      //-       .col.col-7-of-8.date.right
-      //-         a(href="/posts/"+post._id)= formatDate(post.createdAt, "%b %d, %Y at %I:%M %p")
-      //-     p=post.title
-      //-     p=post.body
-      //-     form.center.form-inline.confirm.settings-post(action="/posts/"+post.id, method="post")
-      //-       if (post.user._id == req.user.id)
-      //-          a.btn.btn-success.flat.edit(href='/posts/'+post._id+'/edit', title="edit") Edit
-      //-          button.btn.flat(type="submit") delete
+  .grid
+    .row
+    - if (posts.length)
+      each post in posts
+        include post
 
-    - if (pages > 1)
+    // - if (pages > 1)
       ul.pagination
         != createPagination(pages, page)
