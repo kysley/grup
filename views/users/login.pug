@@ -1,15 +1,18 @@
 extends auth
 
 block auth
-  form.form-horizontal.form-signin(action="/users/sessions", method="post", role="form")
+  form.form-signin(action="/users/sessions", method="post", role="form")
     input(type="hidden", name="_csrf", value="#{csrf_token}")
 
-    p.col-sm-offset-2.error= message
+    //- p.error= message
+    label.form-label.-username username
+    input#username.form-control.-username(type="text", name="username", autocomplete="off")
 
-    input#email.form-control(type="text", placeholder="username", name="username")
-
-    input#password.form-control(type="password", placeholder="Password", name="password")
+    label.form-label.-password password
+    input#password.form-control.-password(type="password", name="password", autocomplete="off")
 
     br
-    button.btn.btn-primary.btn-block(type="submit") Log in
-    br
+    button.btn.-primary(type="submit") Log in
+
+    h3
+      a.btn.-secondary(href="/signup") create account
