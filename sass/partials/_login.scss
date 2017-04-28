@@ -1,0 +1,50 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  // background: $black;
+  .login {
+    color: $black;
+    &.-prompt {
+      color: $yellow;
+      font-style: italic;
+      font-size: $login-base-size;
+      text-align: center;
+    }
+  }
+}
+label {
+  display: inline-block;
+  pointer-events: none;
+  position: relative;
+  text-transform: uppercase;
+  width: 55%;
+  text-align: left;
+  &.-username {
+    color: $blue;
+  }
+  &.-password {
+    color: $pink;
+  }
+}
+.form-signin, .form-signup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  .form-control {
+    border: 0;
+    outline: 0;
+    padding: 0.2em 1.2em;
+    height: 3.2em;
+    width: 50%;
+    margin-bottom: 4em;
+    font-size: $login-input-size;
+    &.-username {
+      border-bottom: 1px solid $blue;
+    }
+    &.-password {
+      border-bottom: 1px solid $pink;
+    }
+  }
+}

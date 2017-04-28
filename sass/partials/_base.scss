@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: $font-base-size;
+  font-family: $base-font;
+}
+.user-welcome {
+  font-family: monospace;
+  color: $yellow;
+}
+.text-center {
+  text-align: center;
+}
+ul {
+  li {
+    display: inline-block !important;
+  }
+}

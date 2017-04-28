@@ -1,10 +1,73 @@
 body {
   margin: 0;
   padding: 0;
-  max-width: 100%; }
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif; }
 
 .user-welcome {
-  font-family: monospace; }
+  font-family: monospace;
+  color: #F0CF65; }
+
+.text-center {
+  text-align: center; }
 
 ul li {
   display: inline-block !important; }
+
+.btn {
+  font-size: 1em;
+  border: 0;
+  outline: 0; }
+  .btn.-primary {
+    color: #fff;
+    text-transform: lowercase;
+    width: 5em;
+    padding: .5em .25em;
+    background: #F0CF65;
+    cursor: pointer; }
+  .btn.-secondary {
+    color: #93B5C6; }
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
+  .login-container .login {
+    color: #000; }
+    .login-container .login.-prompt {
+      color: #F0CF65;
+      font-style: italic;
+      font-size: 2em;
+      text-align: center; }
+
+label {
+  display: inline-block;
+  pointer-events: none;
+  position: relative;
+  text-transform: uppercase;
+  width: 55%;
+  text-align: left; }
+  label.-username {
+    color: #93B5C6; }
+  label.-password {
+    color: #BD4F6C; }
+
+.form-signin, .form-signup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center; }
+  .form-signin .form-control, .form-signup .form-control {
+    border: 0;
+    outline: 0;
+    padding: 0.2em 1.2em;
+    height: 3.2em;
+    width: 50%;
+    margin-bottom: 4em;
+    font-size: 1em; }
+    .form-signin .form-control.-username, .form-signup .form-control.-username {
+      border-bottom: 1px solid #93B5C6; }
+    .form-signin .form-control.-password, .form-signup .form-control.-password {
+      border-bottom: 1px solid #BD4F6C; }

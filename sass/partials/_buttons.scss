@@ -1,0 +1,16 @@
+.btn {
+  font-size: $button-base-size;
+  border: 0;
+  outline: 0;
+  &.-primary {
+    color: $white;
+    text-transform: lowercase;
+    width: 5em;
+    padding: .5em .25em;
+    background: $yellow;
+    cursor: pointer;
+  }
+  &.-secondary {
+    color: $blue;
+  }
+}
