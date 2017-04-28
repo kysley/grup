@@ -9,7 +9,7 @@ module.exports = (app, passport, auth) => {
   app.get('/logout', users.logout);
   app.post('/users', users.create);
   // app.get('/userslist', users.list);
-  app.post('/users/sessions', passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid email or password'}), users.session);
+  app.post('/users/sessions', passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid username or password'}), users.session);
   app.get('/users/:userId', users.show);
 
   app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/login'}), users.create);
@@ -50,6 +50,7 @@ module.exports = (app, passport, auth) => {
 
   //comment routes
   var comments = require('../controllers/comments');
+  app.param('commentId', comments.load);
   app.post('/posts/:id/comments', auth.requiresLogin, comments.create);
   app.get('/posts/:id/comments', auth.requiresLogin, comments.create);
   // app.del('/posts/:id/comments', auth.requiresLogin, comments.destroy);

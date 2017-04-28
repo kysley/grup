@@ -24,6 +24,6 @@ block content
 
   br
   h3 Comments
-  //- - each comment in article.comments
-  //-   include ../comments/comment
-  //- include ../comments/form
+  each comment in post.comments
+    include ../comments/comment
+  include ../comments/form

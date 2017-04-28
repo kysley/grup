@@ -1,14 +1,11 @@
 const utils = require('../lib/utils');
 
 exports.load = (req, res, next, id) => {
-  var post = req.post;
-  utils.findByParam(post.comments, {id: id}, (err, comment) => {
-    if (err) {
-      return next(err);
-    }
-    req.comment = comment;
-    next();
-  });
+  req.comment = req.post.comments
+    .find(comment => commend.id == id);
+
+  if (!req.comment) return next(new Error('Comment not found'));
+  next();
 };
 
 // ### Create Comment

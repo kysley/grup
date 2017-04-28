@@ -56,7 +56,6 @@ exports.post = (req, res, next, id) => {
   });
 };
 
-// ### New Tweet
 exports.new = (req, res) => {
   logAnalytics(req);
   res.render('posts/new', {
@@ -65,12 +64,11 @@ exports.new = (req, res) => {
   });
 };
 
-// ### Create a Tweet
 exports.create = (req, res) => {
   logAnalytics(req);
   var post = new Post(req.body);
   post.user = req.user;
-  post.uploadAndSave(req.files.image, err => {
+  post.uploadAndSave(req.file, err => {
     if (err) {
       res.render('posts/new', {
         title: 'New Post',
@@ -83,7 +81,6 @@ exports.create = (req, res) => {
   });
 };
 
-// // ### Edit Tweet
 // exports.edit = (req, res) => {
 //   logAnalytics(req);
 //   res.render('posts/edit', {
@@ -92,7 +89,6 @@ exports.create = (req, res) => {
 //   });
 // };
 
-// ### Show Tweet
 exports.show = (req, res) => {
   logAnalytics(req);
   res.render('posts/show', {
@@ -108,7 +104,7 @@ exports.update = (req, res) => {
   post = _.extend(post, req.body);
   post.uploadAndSave(req.files.image, err => {
     if (err) {
-      res.render('tweets/edit', {
+      res.render('posts/edit', {
         title: 'Edit Post',
         post: post,
         error: err.errors
