@@ -1,11 +1,9 @@
 extends ../layouts/default
 
-block main
-  h1= post.title
-
 block content
   .row
-    .col.col-4-of-8
+    .col.col-4-of-8.center
+      h1= post.title
       p=post.body
       .meta
         - if (post.username)
@@ -15,15 +13,14 @@ block content
 
         p.muted= formatDate(post.createdAt, "%b %d, %Y at %I:%M %p")
 
-  form(action="/posts/"+post.id, method="post", onsubmit="return confirm('Are you sure?')")
-    input(type='hidden', name='_csrf', value="#{csrf_token}")
-    a.btn.btn-default(href='/posts/'+post._id+'/edit', title="edit") Edit
-    | &nbsp;
-    input(type="hidden", name="_method", value="DELETE")
-    button.btn.btn-danger(type="submit") Delete
+      form(action="/posts/"+post.id, method="post", onsubmit="return confirm('Are you sure?')")
+        input(type='hidden', name='_csrf', value="#{csrf_token}")
+        a.btn.btn-default(href='/posts/'+post._id+'/edit', title="edit") Edit
+        | &nbsp;
+        input(type="hidden", name="_method", value="DELETE")
+        button.btn.btn-danger(type="submit") Delete
 
-  br
-  h3 Comments
+  h3 comments
   each comment in post.comments
     include ../comments/comment
   include ../comments/form

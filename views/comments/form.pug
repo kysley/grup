@@ -1,5 +1,6 @@
-form(method="post", action="/posts/" + post._id + "/comments", role="form")
-  input(type='hidden', name='_csrf', value="#{csrf_token}")
-  .form-group
-    textarea.form-control(type='text', rows="6", name="body", placeholder='Add your comment')
-  button.btn.btn-primary(type='submit') Add comment
+.col.col-2-of-4.push-1-of-8
+  form.comment-add(method="post", action="/posts/" + post._id + "/comments", role="form")
+    input(type='hidden', name='_csrf', value="#{csrf_token}")
+    .form-group
+      textarea.form-control(type='text', rows="6", name="body", placeholder='Add your comment')
+    button.btn.-secondary.cta.comment(type='submit') Add comment

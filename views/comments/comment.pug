@@ -1,10 +1,10 @@
 if (comment && comment.user)
-  .comment
-    name= comment.commenterName
+  .col.col-3-of-8.comment-body
+    //- name= comment.commenterName
     p
-      a(href="/users/" + comment.user._id)= name
-      |
-      = comment.body
+      a(href="/users/" + comment.user._id)= comment.commenterName
+    p
+    =comment.body
 
     p.muted
       form.form-inline(role="form", method="post", action="/posts/" + post._id + "/comments/" + comment._id, onsubmit="return confirm('Are you sure?')")

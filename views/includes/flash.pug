@@ -1,3 +1,23 @@
+if (typeof info != 'undefined' && info.length)
+  .col.col-3-of-8.center.text-center
+    each inf in info
+        div= inf
+
+if (typeof errors != 'undefined' && errors.length)
+  .col.col-3-of-8.center.text-center
+    each error in errors
+        div= error
+
+if (typeof success != 'undefined' && success.length)
+  .col.col-3-of-8.center.text-center
+    each succ in success
+      div= succ
+
+if (typeof warning != 'undefined' && warning.length)
+  .col.col-3-of-8.center.text-center
+    each warn in warning
+      div= warn
+
 if messages.errors
   .col.col-3-of-8.center.text-center
     for error in messages.errors
