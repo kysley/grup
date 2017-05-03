@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 // var assets = require('./assets');
-var fs = require('fs');
-var passport = require('passport');
+const fs = require('fs');
+const passport = require('passport');
 require('dotenv').config();
-
+const join = require('path').join;
 const config = require('./config/config');
 const auth = require('./config/middlewares/authorization');
 const mongoose = require('mongoose');
@@ -12,9 +12,13 @@ const mongoose = require('mongoose');
 mongoose.connect(config.db);
 
 const models_path = __dirname+'/models';
-fs.readdirSync(models_path).forEach(file => {
-  require(models_path+'/'+file);
-});
+// fs.readdirSync(models_path).forEach(file => {
+//   require(models_path+'/'+file);
+// });
+
+fs.readdirSync(models_path)
+  .filter(file => ~file.search(/^[^\.].*\.js$/))
+  .forEach(file => require(join(models_path, file)));
 
 require('./config/passport')(passport, config);
 require('./config/express')(app, config, passport);

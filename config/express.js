@@ -30,8 +30,8 @@ module.exports = (app, config, passport) => {
 
   app.use(sassMiddleware({
     src: config.root + '/sass',
-    dest: config.root + '/public/css',
-    prefix: '/css',
+    dest: config.root + '/public/css/',
+    prefix: '/css/',
     debug: true,
   }));
 

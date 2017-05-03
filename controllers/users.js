@@ -2,6 +2,7 @@ const Mongoose = require('mongoose');
 const Post = Mongoose.model('Post');
 const User = Mongoose.model('User');
 const Analytics = Mongoose.model('Analytics');
+const { wrap: async } = require('co');
 
 
 function logAnalytics(req)  {
@@ -54,56 +55,56 @@ exports.session = (req, res) => {
   res.redirect('/');
 };
 
-exports.create = (req, res, next) => {
-  logAnalytics(req);
-  console.log(req.body);
-  const user = new User(req.body);
-  user.provider = 'local';
-
-  User.findOne({ username: req.body.username}, (err, existingUser) => {
-    if (err) {
-      return next(err);
-    }
-    if (existingUser) {
-      req.flash('errors', {msg: 'Account with that username already exists.'});
-      return res.redirect('/signup');
-    }
-  user.save(err => {
-    console.log(err);
-    if (err) {
-      if (err) req.flash('info', {msg: 'Sorry! We are not able to log you in!'});
-      return res.render('users/signup', {errors: err.errors, user: user});
-    }
-    req.logIn(user, err => {
-      if (err) {
-        return next(err);
-      }
-      return res.redirect('/');
-    });
-  });
-  })
-};
-
-// exports.create = (req, res) => {
+// exports.create = (req, res, next) => {
+//   logAnalytics(req);
+//   console.log(req.body);
 //   const user = new User(req.body);
 //   user.provider = 'local';
-//   try {
-//     user.save();
+
+//   User.findOne({ username: req.body.username}, (err, existingUser) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     if (existingUser) {
+//       req.flash('errors', {msg: 'Account with that username already exists.'});
+//       return res.redirect('/signup');
+//     }
+//   }
+//   user.save(err => {
+//     console.log(err);
+//     if (err) {
+//       if (err) req.flash('info', {msg: 'Sorry! We are not able to log you in!'});
+//       return res.render('users/signup', {errors: err.errors, user: user});
+//     }
 //     req.logIn(user, err => {
-//       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
+//       if (err) {
+//         return next(err);
+//       }
 //       return res.redirect('/');
 //     });
-//   } catch (err) {
-//     const errors = Object.keys(err.errors)
-//       .map(field => err.errors[field].message);
-
-//     res.render('users/signup', {
-//       title: 'Sign up',
-//       errors,
-//       user
-//     });
-//   }
+//   });
 // };
+
+exports.create = async(function* (req, res) {
+  const user = new User(req.body);
+  user.provider = 'local';
+  try {
+    yield user.save();
+    req.logIn(user, err => {
+      if (err) req.flash('info', 'Sorry! We are not able to log you in!');
+      return res.redirect('/');
+    });
+  } catch (err) {
+    const errors = Object.keys(err.errors)
+      .map(field => err.errors[field].message);
+
+    res.render('users/signup', {
+      title: 'Sign up',
+      errors,
+      user
+    });
+  }
+});
 
 exports.user = (req, res, next, id) => {
   logAnalytics(req);

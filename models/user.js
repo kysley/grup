@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var authTypes = ['github', 'local'];
+var authTypes = [''];
 
 var UserSchema = new Schema ({
-  username: String,
-  hashedPassword: String,
-  provider: String,
-  salt: String,
-  posts: Number,
-  comments: Number
+  username: { type: String },
+  hashedPassword: { type: String, default: '' },
+  provider: { type: String, default: '' },
+  salt: { type: String, default: '' },
+  posts: { type: Number, default: 0 },
+  comments: { type: Number, default: 0 },
 });
 
 UserSchema
@@ -23,13 +23,12 @@ UserSchema
     return this._password;
   });
 
-var validatePresenceOf = value => value && value.length;
+const validatePresenceOf = value => value && value.length;
 
-UserSchema.path('username').validate(function(username) {
-  if (this.skipValidation()) {
-    return true
-  }
-  return username.length
+UserSchema.path('username').validate(function (username) {
+  console.log("checking validation: " + this.skipValidation());
+  if (this.skipValidation()) return true;
+  return username.length;
 }, 'Username cannot be blank');
 
 UserSchema.path('hashedPassword').validate(function(hashedPassword) {
@@ -37,7 +36,7 @@ UserSchema.path('hashedPassword').validate(function(hashedPassword) {
   return hashedPassword.length && this._password.length;
 }, 'Password cannot be blank');
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
   if (!this.isNew) return next();
 
   if (!validatePresenceOf(this.password) && !this.skipValidation()) {
