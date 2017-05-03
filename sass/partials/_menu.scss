@@ -1,0 +1,20 @@
+.nav {
+  position: relative;
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $black;
+    top: 0;
+    z-index: -1;
+  }
+}
+ul {
+  padding-left: 0;
+  li {
+    display: inline-block;
+    padding-left: 2em;
+  }
+}

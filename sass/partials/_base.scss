@@ -8,13 +8,17 @@ body {
 }
 .user-welcome {
   font-family: monospace;
-  color: $yellow;
+  color: $green;
 }
 .text-center {
   text-align: center;
 }
-ul {
-  li {
-    display: inline-block !important;
-  }
+p.error {
+  color: $color-error;
+}
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
 }

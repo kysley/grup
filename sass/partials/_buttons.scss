@@ -10,7 +10,24 @@
     background: $yellow;
     cursor: pointer;
   }
+  &.cta {
+    box-shadow: 4px 4px 0 $purple;
+    &.alt {
+      box-shadow: 4px 4px 0 $black;
+      background: $purple;
+    }
+    &.comment {
+      margin-top: .5em;
+      padding: .25em;
+      border: 2px solid $green;
+      box-shadow: 4px 4px 0 $green;
+    }
+  }
   &.-secondary {
-    color: $blue;
+    // color: $blue;
+  }
+  &:hover {
+    box-shadow: none !important;
+    cursor: pointer;
   }
 }
