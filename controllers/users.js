@@ -28,17 +28,25 @@ exports.authCallback = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  res.render('users/login', {
-    title: 'Login',
-    message: req.flash('error')
-  });
+  if (!req.isAuthenticated()) {
+    res.render('users/login', {
+      title: 'Login',
+      message: req.flash('error')
+    });
+  } else {
+    res.redirect('/');
+  }
 };
 
 exports.signup = (req, res) => {
-  res.render('users/signup', {
-    title: 'Sign up',
-    user: new User()
-  });
+  if (!req.isAuthenticated()) {
+    res.render('users/signup', {
+      title: 'Sign up',
+      user: new User()
+    });
+  } else {
+    res.redirect('/');
+  }
 };
 
 exports.logout = (req, res) => {
@@ -61,15 +69,15 @@ exports.session = (req, res) => {
 //   const user = new User(req.body);
 //   user.provider = 'local';
 
-//   User.findOne({ username: req.body.username}, (err, existingUser) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (existingUser) {
-//       req.flash('errors', {msg: 'Account with that username already exists.'});
-//       return res.redirect('/signup');
-//     }
-//   }
+  // User.findOne({ username: req.body.username}, (err, existingUser) => {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  //   if (existingUser) {
+  //     req.flash('errors', {msg: 'Account with that username already exists.'});
+  //     return res.redirect('/signup');
+  //   }
+  // }
 //   user.save(err => {
 //     console.log(err);
 //     if (err) {
@@ -88,6 +96,15 @@ exports.session = (req, res) => {
 exports.create = async(function* (req, res) {
   const user = new User(req.body);
   user.provider = 'local';
+    User.findOne({ username: req.body.username}, (err, existingUser) => {
+    if (err) {
+      return next(err);
+    }
+    if (existingUser) {
+      req.flash('errors', {msg: 'Account with that username already exists.'});
+      return res.redirect('/signup');
+    }
+  })
   try {
     yield user.save();
     req.logIn(user, err => {

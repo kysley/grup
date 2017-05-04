@@ -15,7 +15,6 @@ function simpleStringify (object){
     return JSON.stringify(simpleObject); // returns cleaned up JSON
 }
 
-// ## Tweet Controller
 const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 const Analytics = mongoose.model('Analytics');
@@ -97,7 +96,6 @@ exports.show = (req, res) => {
   });
 };
 
-// // ### Update a tweet
 exports.update = (req, res) => {
   logAnalytics(req);
   var post = req.post;
@@ -115,17 +113,16 @@ exports.update = (req, res) => {
   });
 };
 
-// // ### Delete a tweet
-// exports.destroy = (req, res) => {
-//   logAnalytics(req);
-//   var tweet = req.tweet;
-//   tweet.remove(err => {
-//     if (err) {
-//       return res.render('500');
-//     }
-//     res.redirect('/');
-//   });
-// };
+exports.destroy = (req, res) => {
+  logAnalytics(req);
+  // var post = req.post;
+  req.post.remove(err => {
+    if (err) {
+      return res.render('500');
+    }
+    res.redirect('/');
+  });
+};
 
 // exports.index = (req, res) => {
 //   logAnalytics(req);

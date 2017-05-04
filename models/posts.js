@@ -68,6 +68,15 @@ PostSchema.methods = {
       this.save(cb);
     }
   },
+  removeComment: function (commentId) {
+    const index = this.comments
+      .map(comment => comment.id)
+      .indexOf(commentId);
+
+    if (~index) this.comments.splice(index, 1);
+    else throw new Error('Comment not found');
+    return this.save();
+  }
 };
 
 PostSchema.statics = {

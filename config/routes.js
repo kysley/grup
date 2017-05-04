@@ -42,7 +42,7 @@ module.exports = (app, passport, auth) => {
   app.get('/posts/:id', posts.show);
   // app.get('/posts/:id/edit', auth.requiresLogin, auth.post.hasAuthorization, posts.edit);
   app.put('/posts/:id', auth.requiresLogin, auth.post.hasAuthorization, multipartMiddleware, posts.update);
-  // app.delete('/posts/:id', auth.requiresLogin, auth.post.hasAuthorization, posts.destroy);
+  app.delete('/posts/:id', auth.requiresLogin, auth.post.hasAuthorization, posts.destroy);
   app.param('id', posts.post);
 
   //home route
@@ -53,6 +53,6 @@ module.exports = (app, passport, auth) => {
   app.param('commentId', comments.load);
   app.post('/posts/:id/comments', auth.requiresLogin, comments.create);
   app.get('/posts/:id/comments', auth.requiresLogin, comments.create);
-  // app.del('/posts/:id/comments', auth.requiresLogin, comments.destroy);
+  app.delete('/posts/:id/comments/:commentId', auth.requiresLogin, comments.destroy);
 
 };
