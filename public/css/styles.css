@@ -29,8 +29,7 @@ img.emoji {
   .btn.-primary {
     color: #fff;
     text-transform: lowercase;
-    width: 5em;
-    padding: .5em .25em;
+    padding: .5em .5em;
     background: #FFD166;
     cursor: pointer; }
   .btn.cta {
@@ -43,6 +42,23 @@ img.emoji {
       padding: .25em;
       border: 2px solid #06D6A0;
       box-shadow: 4px 4px 0 #06D6A0; }
+    .btn.cta.publish {
+      margin-right: 1em;
+      background: #e0e0e0;
+      border: 2px solid #91A6FF;
+      color: #000; }
+    .btn.cta.delete {
+      margin-left: 1em;
+      background-color: #e0e0e0;
+      border: 2px solid #F04A50;
+      box-shadow: 4px 4px 0 #F04A50;
+      color: #000; }
+    .btn.cta.edit {
+      background-color: #e0e0e0;
+      border: 2px solid #4477FF;
+      box-shadow: 4px 4px 0 #4477FF;
+      color: #000;
+      padding: 0 .5em; }
   .btn:hover {
     box-shadow: none !important;
     cursor: pointer; }
@@ -138,4 +154,18 @@ ul {
   outline: 0;
   width: 50%;
   border: 2px dotted #000;
-  box-shadow: 4px 4px 0 #06D6A0; }
+  box-shadow: 4px 4px 0 #06D6A0;
+  font-size: 1em; }
+
+.post-new textarea {
+  outline: 0;
+  width: 50%;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #91A6FF; }
+  .post-new textarea.title {
+    line-height: 1;
+    font-size: 2em; }
+  .post-new textarea.body {
+    font-size: 1em;
+    box-shadow: 8px 8px 0 #4477FF;
+    height: 15em; }
