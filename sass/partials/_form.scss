@@ -1,0 +1,27 @@
+.comment-add {
+  textarea {
+    outline: 0;
+    width: 50%;
+    border: 2px dotted $black;
+    box-shadow: 4px 4px 0 $green;
+    font-size: $comment-body-size;
+  }
+}
+
+.post-new {
+  textarea {
+    outline: 0;
+    width: 50%;
+    border: 2px solid $black;
+    box-shadow: 4px 4px 0 $purple;
+    &.title {
+      line-height: 1;
+      font-size: $post-title-size;
+    }
+    &.body {
+      font-size: $post-body-size;
+      box-shadow: 8px 8px 0 $blue;
+      height: 15em;
+    }
+  }
+}

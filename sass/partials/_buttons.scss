@@ -5,8 +5,8 @@
   &.-primary {
     color: $white;
     text-transform: lowercase;
-    width: 5em;
-    padding: .5em .25em;
+    // width: 5em;
+    padding: .5em .5em;
     background: $yellow;
     cursor: pointer;
   }
@@ -21,6 +21,26 @@
       padding: .25em;
       border: 2px solid $green;
       box-shadow: 4px 4px 0 $green;
+    }
+    &.publish {
+      margin-right: 1em;
+      background: $grey;
+      border: 2px solid $purple;
+      color: $black;
+    }
+    &.delete {
+      margin-left: 1em;
+      background-color: $grey;
+      border: 2px solid $red;
+      box-shadow: 4px 4px 0 $red;
+      color: $black;
+    }
+    &.edit {
+      background-color: $grey;
+      border: 2px solid $blue;
+      box-shadow: 4px 4px 0 $blue;
+      color: $black;
+      padding: 0 .5em;
     }
   }
   &.-secondary {
