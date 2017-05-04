@@ -1,10 +1,10 @@
 # grup
 
-### Grup is a social link aggregator (reddit/hn) that is a work in progress
+### Grup is a work in progress social link aggregator (reddit/hn).
 
 ##### Runs on node and express, using MongoDB and Mongoose for database
 
-The UI is pretty much non-existant at this stage while I polish the functionality and routing.
+The UI is designed to be very (VERY) retro, this may change in the future.
 
 You could learn from this (probably, if you wanted) as I believe the code is pretty lean.
 
