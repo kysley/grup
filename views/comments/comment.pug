@@ -11,4 +11,4 @@ if (comment && comment.user)
         input(type='hidden', name='_csrf', value="#{csrf_token}")
         span.muted= formatDate(comment.createdAt)
         input(type="hidden", name="_method", value="DELETE")
-        button.btn.btn-danger.btn-link.error(type="submit") delete
+        button.btn.-secondary.cta.delete(type="submit") delete
