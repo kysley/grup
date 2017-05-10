@@ -40,31 +40,31 @@ module.exports = (passport, config) => {
 
 
   // // use github strategy
-  passport.use(new GitHubStrategy({
-      clientID: config.github.clientID,
-      clientSecret: config.github.clientSecret,
-      callbackURL: config.github.callbackURL
-    },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({'github.id': profile.id }, (err, user) => {
-        if (!user) {
-          user = new User({
-              name: profile.displayName,
-              // email: profile.emails[0].value,
-              username: profile.username,
-              provider: 'github',
-              github: profile._json
-          });
-          user.save(err => {
-            if (err) console.log(err);
-            return done(err, user);
-          });
-        } else {
-          return done(err, user);
-        }
-      });
-    }
-  ));
+  // passport.use(new GitHubStrategy({
+  //     clientID: config.github.clientID,
+  //     clientSecret: config.github.clientSecret,
+  //     callbackURL: config.github.callbackURL
+  //   },
+  //   (accessToken, refreshToken, profile, done) => {
+  //     User.findOne({'github.id': profile.id }, (err, user) => {
+  //       if (!user) {
+  //         user = new User({
+  //             name: profile.displayName,
+  //             // email: profile.emails[0].value,
+  //             username: profile.username,
+  //             provider: 'github',
+  //             github: profile._json
+  //         });
+  //         user.save(err => {
+  //           if (err) console.log(err);
+  //           return done(err, user);
+  //         });
+  //       } else {
+  //         return done(err, user);
+  //       }
+  //     });
+  //   }
+  // ));
 
 
 };
