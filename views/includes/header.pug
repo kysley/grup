@@ -1,8 +1,10 @@
 body
   .grid
     .row
-      .col.col-1-of-4
-        p.user-welcome grup
+      .col.col-1-of-4.push-1-of-8
+        a(href='/')
+          img.grup-icon(src='/assets/grup.svg')
+
       if (req.isAuthenticated())
         .col.col-2-of-4.right
           ul
