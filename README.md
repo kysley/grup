@@ -1,8 +1,8 @@
-# grup
+# [grup](http://grup.chat)
 
 ### Grup is a work in progress social link aggregator (reddit/hn).
 
-##### Runs on node and express, using MongoDB and Mongoose for database
+##### Runs on node and express, using MongoDB and Mongoose for database - is deployed with the fantastic service [buddy](http://buddy.works)!
 
 The UI is designed to be very (VERY) retro, this may change in the future.
 
