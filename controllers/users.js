@@ -96,15 +96,6 @@ exports.session = (req, res) => {
 exports.create = async(function* (req, res) {
   const user = new User(req.body);
   user.provider = 'local';
-    User.findOne({ username: req.body.username}, (err, existingUser) => {
-    if (err) {
-      return next(err);
-    }
-    if (existingUser) {
-      req.flash('errors', {msg: 'Account with that username already exists.'});
-      return res.redirect('/signup');
-    }
-  })
   try {
     yield user.save();
     req.logIn(user, err => {
